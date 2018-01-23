@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap css -->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <!-- jquery js -->
+        <script src="js/venders/jquery-3.2.1.js" type="text/javascript"></script>
+        <!-- bootstrap js -->
+        <script src="js/venders/bootstrap.js" type="text/javascript"></script>
+        <!-- angular js -->
+        <script src="js/venders/angular.js" type="text/javascript"></script>
+        <script>
+            angular.module("tableApp", []).controller("tableController", ['$scope', function ($scope) {
+                    $scope.instructors = [{
+                            id: 1,
+                            name: "A",
+                            questions: [
+                                {"ask": "what is apple?"},
+                                {"ask": "what is apple1?"},
+                                {"ask": "what is apple2?"}
+                            ]
+
+                        }, {
+                            id: 2,
+                            name: "B",
+                            questions: [
+                                {"ask": "what is pier?"},
+                                {"ask": "what is pier1?"},
+                                {"ask": "what is pier2?"}
+                            ]
+                        }];
+                }])
+        </script>
+    </head>
+    <body>
+        <div ng-app="tableApp">
+            <div ng-controller="tableController">
+                <table class="table table-bordered">
+                    <thead>
+                    <th>Title</th>
+                    <th>#</th>
+                    <th>Question</th>
+                    </thead>
+                    <tbody ng-repeat="questionItem in instructors track by $index">
+                        <tr ng-repeat="question in questionItem.questions track by $index">
+                            <td>{{questionItem.name}}</td>
+                            <td>{{$index + 1}}</td>	
+                            <td>{{question.ask}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
